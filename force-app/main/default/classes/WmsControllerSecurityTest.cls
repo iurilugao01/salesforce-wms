@@ -66,6 +66,16 @@ private class WmsControllerSecurityTest {
     }
 
     @IsTest
+    static void operadorConsegueRegistrarLogDeErro() {
+        User u = criarUsuario(true);
+        System.runAs(u) {
+            ErrorLogger.log(new IllegalArgumentException('falha do operador'), 'SecurityTest');
+        }
+        Test.getEventBus().deliver();
+        Assert.areEqual(1, [SELECT COUNT() FROM Log_Erro__c WHERE Origem__c = 'SecurityTest']);
+    }
+
+    @IsTest
     static void operadorConsultaERegistraMasNaoEscreveSaldoDiretamente() {
         Posicao__c pos = TestDataFactory.criarPosicaoCompleta('S2-01');
         Produto__c prod = TestDataFactory.criarProduto('SKU-S2');

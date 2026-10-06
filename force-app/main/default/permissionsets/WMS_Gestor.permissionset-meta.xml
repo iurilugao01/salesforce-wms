@@ -17,6 +17,7 @@
     <objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Corredor__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
     <objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Posicao__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
 
+    <objectPermissions><allowCreate>true</allowCreate><allowDelete>false</allowDelete><allowEdit>false</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Log_Erro_Evento__e</object><viewAllRecords>false</viewAllRecords></objectPermissions>
     <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Posicao_Origem__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Posicao_Destino__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Movimentacao_Estoque__c.Data_Hora__c</field><readable>true</readable></fieldPermissions>
