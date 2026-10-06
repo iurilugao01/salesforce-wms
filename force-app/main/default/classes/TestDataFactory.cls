@@ -80,7 +80,9 @@ public class TestDataFactory {
             Posicao__c = posicaoId,
             Quantidade_Atual__c = quantidade
         );
+        TriggerHandler.bypass('SaldoEstoqueTriggerHandler');
         insert s;
+        TriggerHandler.clearBypass('SaldoEstoqueTriggerHandler');
         return s;
     }
 

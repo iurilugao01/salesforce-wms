@@ -1,6 +1,12 @@
 public inherited sharing class SaldoEstoqueService {
     public class SaldoInsuficienteException extends Exception {}
 
+    private static Boolean aplicando = false;
+
+    public static Boolean estaAplicando() {
+        return aplicando;
+    }
+
     private class Delta {
         Id loteId;
         Id posicaoId;
@@ -52,7 +58,12 @@ public inherited sharing class SaldoEstoqueService {
                 Chave__c = k, Lote__c = d.loteId, Posicao__c = d.posicaoId, Quantidade_Atual__c = novo
             ));
         }
-        upsert as system gravar Saldo_Estoque__c.Chave__c;
+        aplicando = true;
+        try {
+            upsert as system gravar Saldo_Estoque__c.Chave__c;
+        } finally {
+            aplicando = false;
+        }
     }
 
     private static void somar(Map<String, Delta> deltas, Id loteId, Id posicaoId, Decimal valor) {
