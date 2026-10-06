@@ -1,0 +1,91 @@
+<template>
+    <lightning-card title="Registrar Movimentação" icon-name="standard:product_transfer">
+        <div class="slds-var-p-horizontal_medium slds-var-p-bottom_medium">
+            <template for:each={chaves} for:item="chave">
+                <div key={chave}>
+                    <lightning-radio-group
+                        name="tipo"
+                        label="Tipo de movimentação"
+                        options={tipoOptions}
+                        value={tipo}
+                        type="button"
+                        onchange={handleTipo}
+                    ></lightning-radio-group>
+
+                    <lightning-record-picker
+                        data-id="produto"
+                        label="Produto"
+                        object-api-name="Produto__c"
+                        placeholder="Buscar produto"
+                        onchange={handleProduto}
+                    ></lightning-record-picker>
+
+                    <template lwc:if={mostraOrigem}>
+                        <lightning-record-picker
+                            data-id="origem"
+                            label="Posição de origem"
+                            object-api-name="Posicao__c"
+                            placeholder="Buscar posição"
+                            onchange={handleOrigem}
+                        ></lightning-record-picker>
+                    </template>
+
+                    <template lwc:if={mostraDestino}>
+                        <lightning-record-picker
+                            data-id="destino"
+                            label="Posição de destino"
+                            object-api-name="Posicao__c"
+                            placeholder="Buscar posição"
+                            onchange={handleDestino}
+                        ></lightning-record-picker>
+                    </template>
+
+                    <template lwc:if={ehEntrada}>
+                        <template lwc:if={produtoId}>
+                            <lightning-record-picker
+                                data-id="lote-picker"
+                                label="Lote"
+                                object-api-name="Lote__c"
+                                filter={loteFilter}
+                                placeholder="Buscar lote do produto"
+                                onchange={handleLotePicker}
+                            ></lightning-record-picker>
+                        </template>
+                    </template>
+                    <template lwc:else>
+                        <lightning-combobox
+                            data-id="lote-combobox"
+                            label="Lote"
+                            options={loteOptions}
+                            value={loteId}
+                            placeholder="Selecione produto e origem"
+                            onchange={handleLoteCombo}
+                        ></lightning-combobox>
+                        <p lwc:if={textoSugestao} class="slds-text-color_weak sugestao-fefo">{textoSugestao}</p>
+                    </template>
+
+                    <lightning-input
+                        data-id="quantidade"
+                        type="number"
+                        label="Quantidade"
+                        step="0.01"
+                        min="0.01"
+                        value={quantidade}
+                        onchange={handleQuantidade}
+                    ></lightning-input>
+
+                    <p lwc:if={erro} class="slds-text-color_error slds-var-m-top_x-small mensagem-erro">{erro}</p>
+
+                    <lightning-button
+                        data-id="salvar"
+                        class="slds-var-m-top_small"
+                        variant="brand"
+                        label="Registrar"
+                        disabled={desabilitaSalvar}
+                        onclick={handleSalvar}
+                    ></lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
