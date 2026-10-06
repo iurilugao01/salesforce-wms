@@ -3,6 +3,9 @@
     <label>WMS Gestor</label>
     <description>Gestor: tudo do operador, mais cadastro de depósitos, produtos e lotes, relatórios e logs.</description>
     <hasActivationRequired>false</hasActivationRequired>
+    <applicationVisibilities><application>WMS</application><visible>true</visible></applicationVisibilities>
+    <classAccesses><apexClass>FefoService</apexClass><enabled>true</enabled></classAccesses>
+    <classAccesses><apexClass>WmsController</apexClass><enabled>true</enabled></classAccesses>
 
     <objectPermissions><allowCreate>true</allowCreate><allowDelete>false</allowDelete><allowEdit>false</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Movimentacao_Estoque__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
     <objectPermissions><allowCreate>false</allowCreate><allowDelete>false</allowDelete><allowEdit>false</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Saldo_Estoque__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
@@ -34,4 +37,15 @@
     <fieldPermissions><editable>false</editable><field>Log_Erro__c.Origem__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Log_Erro__c.Mensagem__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Log_Erro__c.Stack_Trace__c</field><readable>true</readable></fieldPermissions>
+
+    <tabSettings><tab>Painel_Operacional</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Movimentacao_Estoque__c</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Saldo_Estoque__c</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Lote__c</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Produto__c</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Deposito__c</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Zona__c</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Corredor__c</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Posicao__c</tab><visibility>Visible</visibility></tabSettings>
+    <tabSettings><tab>Log_Erro__c</tab><visibility>Visible</visibility></tabSettings>
 </PermissionSet>
