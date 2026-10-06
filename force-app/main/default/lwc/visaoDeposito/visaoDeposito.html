@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Visão do Depósito" icon-name="standard:warehouse">
+        <div class="slds-var-p-horizontal_medium slds-var-p-bottom_medium">
+            <lightning-combobox
+                label="Depósito"
+                options={depositoOptions}
+                value={depositoId}
+                placeholder="Selecione um depósito"
+                onchange={handleDeposito}
+            ></lightning-combobox>
+
+            <p lwc:if={erro} class="slds-text-color_error mensagem-erro">{erro}</p>
+
+            <template lwc:if={semZonas}>
+                <p class="slds-text-color_weak slds-var-m-top_small mensagem-vazio">
+                    Este depósito ainda não tem zonas cadastradas.
+                </p>
+            </template>
+
+            <template for:each={zonas} for:item="zona">
+                <div key={zona.id} class="slds-var-m-top_medium zona">
+                    <h3 class="slds-text-heading_small">{zona.nome} <span class="slds-text-color_weak">({zona.tipo})</span></h3>
+                    <template for:each={zona.corredores} for:item="corredor">
+                        <div key={corredor.id} class="slds-var-m-left_medium slds-var-m-top_x-small">
+                            <p class="slds-text-title_bold">{corredor.nome}</p>
+                            <template for:each={corredor.posicoes} for:item="posicao">
+                                <div key={posicao.id} class="slds-var-m-left_medium slds-var-m-top_xx-small">
+                                    <p>
+                                        <span class="posicao-codigo">{posicao.codigo}</span>
+                                        <span class="slds-text-color_weak"> — {posicao.rotuloOcupacao}</span>
+                                    </p>
+                                    <lightning-progress-bar value={posicao.percentual} size="small"></lightning-progress-bar>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
