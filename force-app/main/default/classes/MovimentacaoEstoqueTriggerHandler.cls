@@ -5,8 +5,8 @@ public with sharing class MovimentacaoEstoqueTriggerHandler extends TriggerHandl
     protected override void beforeInsert() {
         List<Movimentacao_Estoque__c> novas = (List<Movimentacao_Estoque__c>) Trigger.new;
         for (Movimentacao_Estoque__c m : novas) {
-            if (m.Data_Hora__c == null) { m.Data_Hora__c = System.now(); }
-            if (m.Usuario_Responsavel__c == null) { m.Usuario_Responsavel__c = UserInfo.getUserId(); }
+            m.Data_Hora__c = System.now();
+            m.Usuario_Responsavel__c = UserInfo.getUserId();
         }
         MovimentacaoValidator.validar(novas);
     }

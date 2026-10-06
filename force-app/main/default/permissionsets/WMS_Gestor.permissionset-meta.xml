@@ -19,8 +19,8 @@
 
     <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Posicao_Origem__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Posicao_Destino__c</field><readable>true</readable></fieldPermissions>
-    <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Data_Hora__c</field><readable>true</readable></fieldPermissions>
-    <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Usuario_Responsavel__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Movimentacao_Estoque__c.Data_Hora__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Movimentacao_Estoque__c.Usuario_Responsavel__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Saldo_Estoque__c.Produto_Nome__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Saldo_Estoque__c.Data_Validade__c</field><readable>true</readable></fieldPermissions>
     <fieldPermissions><editable>false</editable><field>Saldo_Estoque__c.Deposito_Nome__c</field><readable>true</readable></fieldPermissions>

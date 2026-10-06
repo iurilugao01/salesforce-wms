@@ -25,6 +25,21 @@ private class MovimentacaoEstoqueTriggerHandlerTest {
     }
 
     @IsTest
+    static void dataHoraEResponsavelSaoSempreDefinidosPeloSistema() {
+        montar();
+        User outro = [SELECT Id FROM User WHERE Id != :UserInfo.getUserId() AND IsActive = true LIMIT 1];
+        Movimentacao_Estoque__c m = TestDataFactory.novaMovimentacao(MovimentacaoTipo.ENTRADA, lote.Id, null, p1.Id, 5);
+        m.Data_Hora__c = System.now().addDays(-30);
+        m.Usuario_Responsavel__c = outro.Id;
+        insert m;
+        Movimentacao_Estoque__c gravada = [
+            SELECT Data_Hora__c, Usuario_Responsavel__c FROM Movimentacao_Estoque__c WHERE Id = :m.Id
+        ];
+        Assert.areEqual(UserInfo.getUserId(), gravada.Usuario_Responsavel__c, 'responsável não pode ser forjado');
+        Assert.isTrue(gravada.Data_Hora__c > System.now().addMinutes(-5), 'data/hora não pode ser retroativa');
+    }
+
+    @IsTest
     static void saidaDecrementaESaldoFinalCorreto() {
         montar();
         TestDataFactory.registrar(MovimentacaoTipo.ENTRADA, lote.Id, null, p1.Id, 100);
