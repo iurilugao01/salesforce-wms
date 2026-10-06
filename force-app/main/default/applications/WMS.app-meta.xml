@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#1B5297</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>WMS</label>
+    <navType>Standard</navType>
+    <tabs>Painel_Operacional</tabs>
+    <tabs>Movimentacao_Estoque__c</tabs>
+    <tabs>Saldo_Estoque__c</tabs>
+    <tabs>Lote__c</tabs>
+    <tabs>Produto__c</tabs>
+    <tabs>Deposito__c</tabs>
+    <tabs>Zona__c</tabs>
+    <tabs>Corredor__c</tabs>
+    <tabs>Posicao__c</tabs>
+    <tabs>Log_Erro__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>
