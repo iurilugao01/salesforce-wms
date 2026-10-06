@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns><field>CUST_NAME</field></columns>
+    <columns><field>Movimentacao_Estoque__c.Lote__c</field></columns>
+    <columns><field>Movimentacao_Estoque__c.Posicao_Origem__c</field></columns>
+    <columns><field>Movimentacao_Estoque__c.Posicao_Destino__c</field></columns>
+    <columns><field>Movimentacao_Estoque__c.Data_Hora__c</field></columns>
+    <columns><aggregateTypes>Sum</aggregateTypes><field>Movimentacao_Estoque__c.Quantidade__c</field></columns>
+    <description>Movimentações do período agrupadas por tipo.</description>
+    <format>Summary</format>
+    <groupingsDown><field>Movimentacao_Estoque__c.Tipo__c</field><sortOrder>Asc</sortOrder></groupingsDown>
+    <name>Movimentações por Tipo</name>
+    <reportType>CustomEntity$Movimentacao_Estoque__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Movimentacao_Estoque__c.Data_Hora__c</dateColumn>
+        <interval>INTERVAL_LAST30</interval>
+    </timeFrameFilter>
+</Report>

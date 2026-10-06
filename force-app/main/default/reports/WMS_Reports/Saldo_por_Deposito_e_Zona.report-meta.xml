@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns><field>Saldo_Estoque__c.Produto_Nome__c</field></columns>
+    <columns><field>Saldo_Estoque__c.Lote__c</field></columns>
+    <columns><field>Saldo_Estoque__c.Posicao__c</field></columns>
+    <columns><aggregateTypes>Sum</aggregateTypes><field>Saldo_Estoque__c.Quantidade_Atual__c</field></columns>
+    <description>Saldo de estoque agrupado por depósito e zona.</description>
+    <filter>
+        <criteriaItems>
+            <column>Saldo_Estoque__c.Quantidade_Atual__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown><field>Saldo_Estoque__c.Deposito_Nome__c</field><sortOrder>Asc</sortOrder></groupingsDown>
+    <groupingsDown><field>Saldo_Estoque__c.Zona_Nome__c</field><sortOrder>Asc</sortOrder></groupingsDown>
+    <name>Saldo por Depósito e Zona</name>
+    <reportType>CustomEntity$Saldo_Estoque__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>

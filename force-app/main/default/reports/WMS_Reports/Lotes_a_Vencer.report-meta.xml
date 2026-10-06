@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns><field>CUST_NAME</field></columns>
+    <columns><field>Lote__c.Produto_Nome__c</field></columns>
+    <columns><field>Lote__c.Data_Validade__c</field></columns>
+    <columns><field>Lote__c.Quantidade_Recebida__c</field></columns>
+    <description>Lotes com validade nos próximos 30 dias.</description>
+    <format>Tabular</format>
+    <name>Lotes a Vencer</name>
+    <reportType>CustomEntity$Lote__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>Lote__c.Data_Validade__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Lote__c.Data_Validade__c</dateColumn>
+        <interval>INTERVAL_NEXT30</interval>
+    </timeFrameFilter>
+</Report>
