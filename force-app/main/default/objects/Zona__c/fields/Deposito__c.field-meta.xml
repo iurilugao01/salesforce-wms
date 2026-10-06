@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deposito__c</fullName>
+    <label>Depósito</label>
+    <type>Lookup</type>
+    <referenceTo>Deposito__c</referenceTo>
+    <relationshipLabel>Zonas</relationshipLabel>
+    <relationshipName>Zonas</relationshipName>
+    <required>true</required>
+    <deleteConstraint>Restrict</deleteConstraint>
+</CustomField>

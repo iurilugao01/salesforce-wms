@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Zona__c</fullName>
+    <label>Zona</label>
+    <type>Lookup</type>
+    <referenceTo>Zona__c</referenceTo>
+    <relationshipLabel>Corredores</relationshipLabel>
+    <relationshipName>Corredores</relationshipName>
+    <required>true</required>
+    <deleteConstraint>Restrict</deleteConstraint>
+</CustomField>
