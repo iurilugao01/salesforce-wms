@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Movimentação de Estoque</label>
+    <pluralLabel>Movimentações de Estoque</pluralLabel>
+    <nameField>
+        <displayFormat>MOV-{000000}</displayFormat>
+        <label>Número</label>
+        <startingNumber>1</startingNumber>
+        <type>AutoNumber</type>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableActivities>false</enableActivities>
+    <enableHistory>false</enableHistory>
+    <enableBulkApi>true</enableBulkApi>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+</CustomObject>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Produto_Nome__c</fullName>
+    <label>Produto</label>
+    <type>Text</type>
+    <formula>Lote__r.Produto__r.Name</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

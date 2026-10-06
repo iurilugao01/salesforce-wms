@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Posicao_Origem__c</fullName>
+    <label>Posição de Origem</label>
+    <type>Lookup</type>
+    <referenceTo>Posicao__c</referenceTo>
+    <relationshipLabel>Movimentações (Saída)</relationshipLabel>
+    <relationshipName>Movimentacoes_Saida</relationshipName>
+    <required>false</required>
+    <deleteConstraint>SetNull</deleteConstraint>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Posicao__c</fullName>
+    <label>Posição</label>
+    <type>Lookup</type>
+    <referenceTo>Posicao__c</referenceTo>
+    <relationshipLabel>Saldos</relationshipLabel>
+    <relationshipName>Saldos</relationshipName>
+    <required>true</required>
+    <deleteConstraint>Restrict</deleteConstraint>
+</CustomField>

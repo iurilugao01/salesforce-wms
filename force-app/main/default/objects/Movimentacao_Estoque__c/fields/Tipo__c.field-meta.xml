@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tipo__c</fullName>
+    <label>Tipo</label>
+    <type>Picklist</type>
+    <required>true</required>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Entrada</fullName>
+                <default>true</default>
+                <label>Entrada</label>
+            </value>
+            <value>
+                <fullName>Saida</fullName>
+                <default>false</default>
+                <label>Saída</label>
+            </value>
+            <value>
+                <fullName>Transferencia</fullName>
+                <default>false</default>
+                <label>Transferência</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
