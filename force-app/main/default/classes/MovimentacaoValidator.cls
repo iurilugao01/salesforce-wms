@@ -14,10 +14,10 @@ public inherited sharing class MovimentacaoValidator {
             if (m.Posicao_Destino__c != null) { posicaoIds.add(m.Posicao_Destino__c); }
         }
         Map<Id, Lote__c> lotes = new Map<Id, Lote__c>([
-            SELECT Id, Data_Validade__c FROM Lote__c WHERE Id IN :loteIds
+            SELECT Id, Data_Validade__c FROM Lote__c WHERE Id IN :loteIds WITH SYSTEM_MODE
         ]);
         Map<Id, Posicao__c> posicoes = new Map<Id, Posicao__c>([
-            SELECT Id, Ativa__c FROM Posicao__c WHERE Id IN :posicaoIds
+            SELECT Id, Ativa__c FROM Posicao__c WHERE Id IN :posicaoIds WITH SYSTEM_MODE
         ]);
 
         Date hoje = Date.today();
@@ -79,7 +79,7 @@ public inherited sharing class MovimentacaoValidator {
         Map<String, Decimal> disponivel = new Map<String, Decimal>();
         for (Saldo_Estoque__c s : [
             SELECT Chave__c, Quantidade_Atual__c FROM Saldo_Estoque__c
-            WHERE Chave__c IN :chavesOrigem FOR UPDATE
+            WHERE Chave__c IN :chavesOrigem WITH SYSTEM_MODE FOR UPDATE
         ]) {
             disponivel.put(s.Chave__c, s.Quantidade_Atual__c);
         }

@@ -18,6 +18,7 @@ public with sharing class FefoService {
               AND Quantidade_Atual__c > 0
               AND Quantidade_Atual__c >= :minimo
               AND (Lote__r.Data_Validade__c = NULL OR Lote__r.Data_Validade__c >= :hoje)
+            WITH USER_MODE
             ORDER BY Lote__r.Data_Validade__c ASC NULLS LAST, Lote__r.CreatedDate ASC
             LIMIT 1
         ];

@@ -12,12 +12,7 @@ public with sharing class MovimentacaoEstoqueTriggerHandler extends TriggerHandl
     }
 
     protected override void afterInsert() {
-        List<Movimentacao_Estoque__c> novas = (List<Movimentacao_Estoque__c>) Trigger.new;
-        try {
-            SaldoEstoqueService.aplicar(novas);
-        } catch (SaldoEstoqueService.SaldoInsuficienteException e) {
-            for (Movimentacao_Estoque__c m : novas) { m.addError(e.getMessage()); }
-        }
+        SaldoEstoqueService.aplicar((List<Movimentacao_Estoque__c>) Trigger.new);
     }
 
     protected override void beforeUpdate() {

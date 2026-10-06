@@ -33,6 +33,7 @@ public inherited sharing class SaldoEstoqueService {
             SELECT Id, Chave__c, Quantidade_Atual__c
             FROM Saldo_Estoque__c
             WHERE Chave__c IN :deltas.keySet()
+            WITH SYSTEM_MODE
             FOR UPDATE
         ]) {
             existentes.put(s.Chave__c, s);
@@ -51,7 +52,7 @@ public inherited sharing class SaldoEstoqueService {
                 Chave__c = k, Lote__c = d.loteId, Posicao__c = d.posicaoId, Quantidade_Atual__c = novo
             ));
         }
-        upsert gravar Saldo_Estoque__c.Chave__c;
+        upsert as system gravar Saldo_Estoque__c.Chave__c;
     }
 
     private static void somar(Map<String, Delta> deltas, Id loteId, Id posicaoId, Decimal valor) {

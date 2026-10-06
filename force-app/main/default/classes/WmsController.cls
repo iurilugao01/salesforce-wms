@@ -42,7 +42,7 @@ public with sharing class WmsController {
     @AuraEnabled
     public static List<OpcaoDeposito> listarDepositos() {
         List<OpcaoDeposito> opcoes = new List<OpcaoDeposito>();
-        for (Deposito__c d : [SELECT Id, Name FROM Deposito__c ORDER BY Name]) {
+        for (Deposito__c d : [SELECT Id, Name FROM Deposito__c WITH USER_MODE ORDER BY Name]) {
             OpcaoDeposito o = new OpcaoDeposito();
             o.id = d.Id;
             o.nome = d.Name;
@@ -55,7 +55,7 @@ public with sharing class WmsController {
     public static DepositoVisao buscarHierarquia(Id depositoId) {
         DepositoVisao visao = new DepositoVisao();
         Map<Id, ZonaVisao> zonas = new Map<Id, ZonaVisao>();
-        for (Zona__c z : [SELECT Id, Name, Tipo__c FROM Zona__c WHERE Deposito__c = :depositoId ORDER BY Name]) {
+        for (Zona__c z : [SELECT Id, Name, Tipo__c FROM Zona__c WHERE Deposito__c = :depositoId WITH USER_MODE ORDER BY Name]) {
             ZonaVisao zv = new ZonaVisao();
             zv.id = z.Id;
             zv.nome = z.Name;
@@ -66,7 +66,7 @@ public with sharing class WmsController {
 
         Map<Id, CorredorVisao> corredores = new Map<Id, CorredorVisao>();
         for (Corredor__c c : [
-            SELECT Id, Name, Zona__c FROM Corredor__c WHERE Zona__r.Deposito__c = :depositoId ORDER BY Name
+            SELECT Id, Name, Zona__c FROM Corredor__c WHERE Zona__r.Deposito__c = :depositoId WITH USER_MODE ORDER BY Name
         ]) {
             CorredorVisao cv = new CorredorVisao();
             cv.id = c.Id;
@@ -80,6 +80,7 @@ public with sharing class WmsController {
             SELECT Posicao__c posicao, SUM(Quantidade_Atual__c) total
             FROM Saldo_Estoque__c
             WHERE Posicao__r.Corredor__r.Zona__r.Deposito__c = :depositoId
+            WITH USER_MODE
             GROUP BY Posicao__c
         ]) {
             ocupacao.put((Id) ar.get('posicao'), (Decimal) ar.get('total'));
@@ -89,6 +90,7 @@ public with sharing class WmsController {
             SELECT Id, Name, Capacidade_Maxima__c, Ativa__c, Corredor__c
             FROM Posicao__c
             WHERE Corredor__r.Zona__r.Deposito__c = :depositoId
+            WITH USER_MODE
             ORDER BY Name
         ]) {
             PosicaoVisao pv = new PosicaoVisao();
@@ -114,13 +116,14 @@ public with sharing class WmsController {
             WHERE Data_Validade__c != NULL
               AND Data_Validade__c <= :limite
               AND Id IN (SELECT Lote__c FROM Saldo_Estoque__c WHERE Quantidade_Atual__c > 0)
+            WITH USER_MODE
             ORDER BY Data_Validade__c ASC
             LIMIT 200
         ];
         Map<Id, Decimal> totais = new Map<Id, Decimal>();
         for (AggregateResult ar : [
             SELECT Lote__c lote, SUM(Quantidade_Atual__c) total
-            FROM Saldo_Estoque__c WHERE Lote__c IN :lotes GROUP BY Lote__c
+            FROM Saldo_Estoque__c WHERE Lote__c IN :lotes WITH USER_MODE GROUP BY Lote__c
         ]) {
             totais.put((Id) ar.get('lote'), (Decimal) ar.get('total'));
         }
@@ -150,6 +153,7 @@ public with sharing class WmsController {
               AND Lote__r.Produto__c = :produtoId
               AND Quantidade_Atual__c > 0
               AND (Lote__r.Data_Validade__c = NULL OR Lote__r.Data_Validade__c >= :hoje)
+            WITH USER_MODE
             ORDER BY Lote__r.Data_Validade__c ASC NULLS LAST, Lote__r.CreatedDate ASC
             LIMIT 50
         ]) {
@@ -177,7 +181,7 @@ public with sharing class WmsController {
             Quantidade__c = quantidade
         );
         try {
-            insert m;
+            insert as user m;
             return m.Id;
         } catch (DmlException e) {
             if (e.getDmlType(0) == StatusCode.FIELD_CUSTOM_VALIDATION_EXCEPTION) {

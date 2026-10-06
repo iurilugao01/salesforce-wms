@@ -4,7 +4,7 @@ public inherited sharing class ErrorLogger {
     public static void log(Exception e, String origem) {
         if (e == null) { return; }
         try {
-            insert new Log_Erro__c(
+            insert as system new Log_Erro__c(
                 Origem__c = origem,
                 Mensagem__c = truncar(e.getMessage()),
                 Stack_Trace__c = truncar(e.getStackTraceString())

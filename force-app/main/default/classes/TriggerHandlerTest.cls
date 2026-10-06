@@ -50,6 +50,28 @@ private class TriggerHandlerTest {
         Assert.areEqual(2, h.chamadas.size(), 'a terceira execução deve ser ignorada');
     }
 
+    private class NoopHandler extends TriggerHandler {}
+
+    @IsTest
+    static void hooksPadraoNaoFazemNadaParaNenhumaOperacao() {
+        NoopHandler h = new NoopHandler();
+        for (TriggerOperation op : TriggerOperation.values()) {
+            h.dispatch(op);
+        }
+        Assert.areEqual(7, TriggerOperation.values().size());
+    }
+
+    @IsTest
+    static void clearAllBypassesRestauraTodosOsHandlers() {
+        StubHandler h = new StubHandler();
+        String nome = String.valueOf(h).substring(0, String.valueOf(h).indexOf(':'));
+        TriggerHandler.bypass(nome);
+        TriggerHandler.bypass('OutroHandler');
+        TriggerHandler.clearAllBypasses();
+        h.dispatch(TriggerOperation.BEFORE_INSERT);
+        Assert.areEqual(1, h.chamadas.size());
+    }
+
     @IsTest
     static void semLimiteExecutaSempre() {
         TriggerHandler.resetLoopCounts();
