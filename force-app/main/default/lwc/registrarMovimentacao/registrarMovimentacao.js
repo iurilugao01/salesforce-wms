@@ -24,6 +24,7 @@ export default class RegistrarMovimentacao extends LightningElement {
     erro;
     salvando = false;
     chaveForm = 0;
+    requisicao = 0;
 
     get chaves() {
         return [this.chaveForm];
@@ -57,7 +58,9 @@ export default class RegistrarMovimentacao extends LightningElement {
     }
 
     handleTipo(event) {
+        this.requisicao += 1;
         this.tipo = event.detail.value;
+        this.produtoId = undefined;
         this.origemId = undefined;
         this.destinoId = undefined;
         this.loteId = undefined;
@@ -94,6 +97,8 @@ export default class RegistrarMovimentacao extends LightningElement {
     }
 
     async atualizarLotes() {
+        this.requisicao += 1;
+        const requisicao = this.requisicao;
         this.sugestao = undefined;
         if (this.ehEntrada || !this.produtoId || !this.origemId) {
             this.loteOptions = [];
@@ -108,13 +113,18 @@ export default class RegistrarMovimentacao extends LightningElement {
                     quantidade: Number(this.quantidade) || 0
                 })
             ]);
+            if (requisicao !== this.requisicao) {
+                return;
+            }
             this.loteOptions = opcoes.map((o) => ({ label: o.rotulo, value: o.loteId }));
             this.sugestao = sugestao || undefined;
             if (!this.loteManual) {
                 this.loteId = sugestao ? sugestao.loteId : undefined;
             }
         } catch (e) {
-            this.erro = this.mensagem(e);
+            if (requisicao === this.requisicao) {
+                this.erro = this.mensagem(e);
+            }
         }
     }
 

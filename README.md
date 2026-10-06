@@ -35,7 +35,7 @@ erDiagram
     Posicao ||--o{ Movimentacao_Estoque : "origem/destino"
 ```
 
-Apex: `TriggerHandler` (framework), `MovimentacaoEstoqueTriggerHandler`, `LoteTriggerHandler`, `MovimentacaoValidator`, `SaldoEstoqueService`, `FefoService`, `WmsController`, `ErrorLogger`.
+Apex: `TriggerHandler` (framework), `MovimentacaoEstoqueTriggerHandler`, `SaldoEstoqueTriggerHandler` (guarda: o saldo só muda pelo Apex), `LoteTriggerHandler`, `MovimentacaoValidator`, `SaldoEstoqueService`, `FefoService`, `WmsController`, `ErrorLogger` (publica `Log_Erro_Evento__e`, um Platform Event de publicação imediata que grava `Log_Erro__c` e sobrevive ao rollback).
 
 Modos de acesso: a lógica que mantém o saldo derivado (`SaldoEstoqueService`, `MovimentacaoValidator`, `ErrorLogger`) roda em `SYSTEM_MODE`, porque nenhum usuário pode escrever em `Saldo_Estoque__c`; as classes expostas ao LWC (`WmsController`, `FefoService`) rodam em `USER_MODE` e respeitam as permissões do usuário.
 

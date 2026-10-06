@@ -104,4 +104,42 @@ describe('c-registrar-movimentacao', () => {
         expect(q(el, '.mensagem-erro').textContent).toContain('Saldo insuficiente');
         expect(toasts).toHaveLength(0);
     });
+
+    it('trocar o tipo limpa o produto selecionado (o picker é recriado vazio)', async () => {
+        const el = criar();
+        await flush();
+        escolher(el, 'produto', 'a0P1');
+        await flush();
+        expect(picker(el, 'lote-picker')).not.toBeNull();
+        escolherTipo(el, 'Saida');
+        await flush();
+        escolherTipo(el, 'Entrada');
+        await flush();
+        expect(picker(el, 'lote-picker')).toBeNull();
+        expect(q(el, 'lightning-button[data-id="salvar"]').disabled).toBe(true);
+    });
+
+    it('ignora a resposta atrasada de uma origem anterior', async () => {
+        let resolverLento;
+        lotesDisponiveis.mockImplementationOnce(
+            () => new Promise((resolve) => { resolverLento = resolve; })
+        );
+        lotesDisponiveis.mockResolvedValueOnce([{ loteId: 'LOTE-S2', rotulo: 'S2', saldo: 2 }]);
+        sugerirLote.mockResolvedValueOnce({ loteId: 'LOTE-S1', numeroLote: 'S1', validade: null, saldo: 1 });
+        sugerirLote.mockResolvedValueOnce({ loteId: 'LOTE-S2', numeroLote: 'S2', validade: null, saldo: 2 });
+        const el = criar();
+        escolherTipo(el, 'Saida');
+        await flush();
+        escolher(el, 'produto', 'a0P1');
+        await flush();
+        escolher(el, 'origem', 'a0S1');
+        escolher(el, 'origem', 'a0S2');
+        await flush();
+        expect(q(el, 'lightning-combobox[data-id="lote-combobox"]').value).toBe('LOTE-S2');
+
+        resolverLento([{ loteId: 'LOTE-S1', rotulo: 'S1', saldo: 1 }]);
+        await flush();
+        expect(q(el, 'lightning-combobox[data-id="lote-combobox"]').value).toBe('LOTE-S2');
+        expect(q(el, '.sugestao-fefo').textContent).toContain('S2');
+    });
 });
