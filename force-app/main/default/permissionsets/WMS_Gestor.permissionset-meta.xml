@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>WMS Gestor</label>
+    <description>Gestor: tudo do operador, mais cadastro de depósitos, produtos e lotes, relatórios e logs.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+
+    <objectPermissions><allowCreate>true</allowCreate><allowDelete>false</allowDelete><allowEdit>false</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Movimentacao_Estoque__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <objectPermissions><allowCreate>false</allowCreate><allowDelete>false</allowDelete><allowEdit>false</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Saldo_Estoque__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <objectPermissions><allowCreate>false</allowCreate><allowDelete>false</allowDelete><allowEdit>false</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Log_Erro__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Lote__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Produto__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Deposito__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Zona__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Corredor__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Posicao__c</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+
+    <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Posicao_Origem__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Posicao_Destino__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Data_Hora__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Movimentacao_Estoque__c.Usuario_Responsavel__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Saldo_Estoque__c.Produto_Nome__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Saldo_Estoque__c.Data_Validade__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Saldo_Estoque__c.Deposito_Nome__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Saldo_Estoque__c.Zona_Nome__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Lote__c.Produto_Nome__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Lote__c.Data_Fabricacao__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Lote__c.Data_Validade__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Lote__c.Quantidade_Recebida__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Produto__c.Estoque_Minimo__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Deposito__c.Endereco__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Deposito__c.Ativo__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Posicao__c.Capacidade_Maxima__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Posicao__c.Ativa__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Log_Erro__c.Origem__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Log_Erro__c.Mensagem__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Log_Erro__c.Stack_Trace__c</field><readable>true</readable></fieldPermissions>
+</PermissionSet>
