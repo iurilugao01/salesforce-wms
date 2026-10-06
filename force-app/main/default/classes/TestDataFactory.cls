@@ -73,6 +73,17 @@ public class TestDataFactory {
         return m;
     }
 
+    public static Saldo_Estoque__c criarSaldo(Id loteId, Id posicaoId, Decimal quantidade) {
+        Saldo_Estoque__c s = new Saldo_Estoque__c(
+            Chave__c = SaldoEstoqueService.chave(loteId, posicaoId),
+            Lote__c = loteId,
+            Posicao__c = posicaoId,
+            Quantidade_Atual__c = quantidade
+        );
+        insert s;
+        return s;
+    }
+
     public static Decimal saldo(Id loteId, Id posicaoId) {
         List<Saldo_Estoque__c> linhas = [
             SELECT Quantidade_Atual__c FROM Saldo_Estoque__c
