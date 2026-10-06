@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Lotes próximos do vencimento" icon-name="standard:date_time">
+        <div class="slds-var-p-horizontal_medium slds-var-p-bottom_medium">
+            <p lwc:if={erro} class="slds-text-color_error mensagem-erro">{erro}</p>
+            <template lwc:elseif={semLotes}>
+                <p class="slds-text-color_weak mensagem-vazio">
+                    Nenhum lote com saldo vence nos próximos {dias} dias.
+                </p>
+            </template>
+            <template lwc:else>
+                <lightning-datatable
+                    key-field="loteId"
+                    data={lotes}
+                    columns={colunas}
+                    hide-checkbox-column
+                ></lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
+</template>
